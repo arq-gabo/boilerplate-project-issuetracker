@@ -31,41 +31,53 @@ module.exports = function (app) {
 
       newIssue
         .save()
-        .then((db) => res.json(returnObj.funcRntObj(db)))
+        .then((db) => res.json(db))
         .catch((e) => res.json({ error: "required field(s) missing" }));
     })
 
     .put(function (req, res) {
       let project = req.params.project;
 
-      // Add elements to object with elements from re.body
-      let obj = req.body;
+      let obj = { ...req.body };
       let newObj = {};
-      Object.keys(obj).map((val) => {
-        if (obj[val] !== "" && val !== "_id") newObj[val] = obj[val];
-      });
-      IssueModel.findOneAndUpdate(
-        {
-          project,
-          _id: req.body._id,
-        },
-        newObj
-      )
-        .then((db) => res.json({ result: "successfully updated", _id: db._id }))
-        .catch((e) =>
-          res.json({ error: "could not update", _id: req.body._id })
-        );
+
+      if (!obj._id) {
+        res.json({ error: "missing _id" });
+      } else {
+        // Add elements to object with elements from req.body
+        Object.keys(obj).map((val) => {
+          if (obj[val] !== "" && val !== "_id") newObj[val] = obj[val];
+        });
+        if (Object.keys(newObj).length === 0) {
+          res.json({ error: "no update field(s) sent", _id: req.body._id });
+        } else {
+          IssueModel.findOneAndUpdate({ _id: req.body._id, project }, newObj)
+            .then((db) =>
+              res.json({ result: "successfully updated", _id: db._id })
+            )
+            .catch((e) => {
+              res.json({ error: "could not update", _id: obj._id });
+            });
+        }
+      }
     })
 
     .delete(function (req, res) {
       let project = req.params.project;
-      IssueModel.findOneAndRemove({
-        project,
-        _id: req.body._id,
-      })
-        .then((db) => res.json({ result: "successfully deleted", _id: db._id }))
-        .catch((e) =>
-          res.json({ error: "could not delete", _id: req.body._id })
-        );
+
+      if (!req.body._id) {
+        res.json({ error: "missing _id" });
+      } else {
+        IssueModel.findOneAndRemove({
+          project,
+          _id: req.body._id,
+        })
+          .then((db) =>
+            res.json({ result: "successfully deleted", _id: db._id })
+          )
+          .catch((e) =>
+            res.json({ error: "could not delete", _id: req.body._id })
+          );
+      }
     });
 };

@@ -11,7 +11,7 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:3000/api/issues/gabo HTTP/1.1
+POST http://localhost:3000/api/issues/apitest HTTP/1.1
 Content-Type: application/json
 
 {
@@ -20,7 +20,7 @@ Content-Type: application/json
     "created_by": "",
     "assigned_to": "",
     "status_text": "",
-    "project": "gabo"
+    "project": "apitest"
 }
 
 ###
@@ -43,4 +43,18 @@ Content-Type: application/json
     "_id": "6469253234fee16839b85f59",
     "issue_title": "mmmmmmmmmmmmm"
     
+}
+
+###
+PUT http://localhost:3000/api/issues/gabo HTTP/1.1
+Content-Type: application/json
+
+{
+}
+
+###
+PUT https://issue-tracker.freecodecamp.rocks/api/issues/gabo HTTP/1.1
+Content-Type: application/json
+
+{
 }
