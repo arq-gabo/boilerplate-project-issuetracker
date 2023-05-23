@@ -2,6 +2,18 @@ const mongoose = require("mongoose");
 
 let IssueSchema = mongoose.Schema(
   {
+    assigned_to: {
+      type: String,
+      default: "",
+    },
+    status_text: {
+      type: String,
+      default: "",
+    },
+    open: {
+      type: Boolean,
+      default: true,
+    },
     issue_title: {
       type: String,
       required: true,
@@ -14,19 +26,10 @@ let IssueSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    assigned_to: {
-      type: String,
-    },
-    status_text: {
-      type: String,
-    },
-    open: {
-      type: Boolean,
-      default: true,
-    },
     project: {
       type: String,
       select: false,
+      required: true,
     },
     __v: { type: Number, select: false },
   },

@@ -3,9 +3,6 @@
 // Import Models
 const IssueModel = require("../models/IssueModel.js");
 
-// Import return object in POST and PUT
-const returnObj = require("../middleware/returnObj.js");
-
 module.exports = function (app) {
   app
     .route("/api/issues/:project")
