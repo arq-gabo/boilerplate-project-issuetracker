@@ -26,7 +26,9 @@ let IssueSchema = mongoose.Schema(
     },
     project: {
       type: String,
+      select: false,
     },
+    __v: { type: Number, select: false },
   },
   {
     timestamps: {

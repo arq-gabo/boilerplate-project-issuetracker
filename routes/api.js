@@ -15,8 +15,6 @@ module.exports = function (app) {
       // Joins project object width query object
       let objReq = { project, ...req.query };
       IssueModel.find(objReq)
-        .select("-__v")
-        .select("-project")
         .then((db) => res.json(db))
         .catch((e) => res.send(e));
     })
@@ -28,10 +26,21 @@ module.exports = function (app) {
       let objReq = { project, ...req.body };
 
       const newIssue = new IssueModel(objReq);
-
       newIssue
         .save()
-        .then((db) => res.json(db))
+        .then((db) =>
+          res.json({
+            assigned_to: db.assigned_to,
+            status_text: db.status_text,
+            open: db.open,
+            _id: db._id,
+            issue_title: db.issue_title,
+            issue_text: db.issue_text,
+            created_by: db.created_by,
+            created_on: db.created_on,
+            updated_on: db.updated_on,
+          })
+        )
         .catch((e) => res.json({ error: "required field(s) missing" }));
     })
 

@@ -2,11 +2,11 @@ POST https://issue-tracker.freecodecamp.rocks/api/issues/gabo HTTP/1.1
 Content-Type: application/json
 
 {
-    "issue_title": "f",
-    "issue_text": "f",
-    "created_by": "f",
-    "assigned_to": "f",
-    "status_text": "f",
+    "issue_title": "t",
+    "issue_text": "t",
+    "created_by": "",
+    "assigned_to": "",
+    "status_text": "",
     "project": "gabo"
 }
 
@@ -15,9 +15,9 @@ POST http://localhost:3000/api/issues/apitest HTTP/1.1
 Content-Type: application/json
 
 {
-    "issue_title": "",
-    "issue_text": "",
-    "created_by": "",
+    "issue_title": "great",
+    "issue_text": "great",
+    "created_by": "great",
     "assigned_to": "",
     "status_text": "",
     "project": "apitest"
@@ -31,8 +31,7 @@ PUT https://issue-tracker.freecodecamp.rocks/api/issues/gabo HTTP/1.1
 Content-Type: application/json
 
 {
-    "_id": "6469231450786526d5c38a51",
-    "open": false
+    "_id": "646be42e58b24e02d0aa4d96"
 }
 
 ###
@@ -50,6 +49,7 @@ PUT http://localhost:3000/api/issues/gabo HTTP/1.1
 Content-Type: application/json
 
 {
+    "_id": "64691c71cbe69ade23c8e847" 
 }
 
 ###
