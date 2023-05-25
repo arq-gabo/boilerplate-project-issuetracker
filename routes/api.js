@@ -87,7 +87,7 @@ module.exports = function (app) {
           )
           .catch((e) =>
             res
-              .status(404)
+              .status(202)
               .json({ error: "could not delete", _id: req.body._id })
           );
       }

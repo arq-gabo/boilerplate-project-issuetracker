@@ -237,7 +237,7 @@ suite("Functional Tests", function () {
       .delete("/api/issues/apitest")
       .send({ _id: "not valid id" })
       .end(function (err, res) {
-        assert.equal(res.status, 404);
+        assert.equal(res.status, 202);
         assert.equal(res.type, "application/json");
         assert.equal(res.body.error, "could not delete");
         assert.equal(res.body._id, "not valid id");
