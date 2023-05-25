@@ -4,7 +4,7 @@ Content-Type: application/json
 {
     "issue_title": "t",
     "issue_text": "t",
-    "created_by": "",
+    "created_by": "t",
     "assigned_to": "",
     "status_text": "",
     "project": "gabo"
@@ -15,9 +15,22 @@ POST http://localhost:3000/api/issues/apitest HTTP/1.1
 Content-Type: application/json
 
 {
-    "issue_title": "great",
-    "issue_text": "great",
-    "created_by": "great",
+    "issue_title": "",
+    "issue_text": "",
+    "created_by": "",
+    "assigned_to": "",
+    "status_text": "",
+    "project": "apitest"
+}
+
+###
+POST https://boilerplate-project-issuetracker.onrender.com/api/issues/apitest HTTP/1.1
+Content-Type: application/json
+
+{
+    "issue_title": "",
+    "issue_text": "",
+    "created_by": "",
     "assigned_to": "",
     "status_text": "",
     "project": "apitest"
@@ -31,7 +44,6 @@ PUT https://issue-tracker.freecodecamp.rocks/api/issues/gabo HTTP/1.1
 Content-Type: application/json
 
 {
-    "_id": "646be42e58b24e02d0aa4d96"
 }
 
 ###
@@ -49,7 +61,8 @@ PUT http://localhost:3000/api/issues/gabo HTTP/1.1
 Content-Type: application/json
 
 {
-    "_id": "64691c71cbe69ade23c8e847" 
+    "_id": "9834298",
+    "issue_title": "mmmmmmmmmmmmm"
 }
 
 ###
@@ -57,4 +70,20 @@ PUT https://issue-tracker.freecodecamp.rocks/api/issues/gabo HTTP/1.1
 Content-Type: application/json
 
 {
+}
+
+###
+DELETE https://issue-tracker.freecodecamp.rocks/api/issues/gabo HTTP/1.1
+Content-Type: application/json
+
+{
+    "_id": "646d8368af52fd3d74d7ba12"
+}
+
+###
+DELETE http://localhost:3000/api/issues/gabo HTTP/1.1
+Content-Type: application/json
+
+{
+    "_id": ""
 }
