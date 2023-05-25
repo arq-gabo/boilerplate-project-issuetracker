@@ -50,25 +50,21 @@ module.exports = function (app) {
       let newObj = {};
 
       if (!obj._id) {
-        res.status(200).json({ error: "missing _id" });
+        res.json({ error: "missing _id" });
       } else {
         // Add elements to object with elements from req.body
         Object.keys(obj).map((val) => {
           if (obj[val] !== "" && val !== "_id") newObj[val] = obj[val];
         });
         if (Object.keys(newObj).length === 0) {
-          res
-            .status(200)
-            .json({ error: "no update field(s) sent", _id: req.body._id });
+          res.json({ error: "no update field(s) sent", _id: req.body._id });
         } else {
           IssueModel.findOneAndUpdate({ _id: req.body._id, project }, newObj)
             .then((db) =>
-              res
-                .status(201)
-                .json({ result: "successfully updated", _id: db._id })
+              res.json({ result: "successfully updated", _id: db._id })
             )
             .catch((e) => {
-              res.status(404).json({ error: "could not update", _id: obj._id });
+              res.json({ error: "could not update", _id: obj._id });
             });
         }
       }
@@ -78,7 +74,7 @@ module.exports = function (app) {
       let project = req.params.project;
 
       if (!req.body._id) {
-        res.status(200).json({ error: "missing _id" });
+        res.json({ error: "missing _id" });
       } else {
         IssueModel.findOneAndRemove({
           project,
